@@ -1,22 +1,22 @@
 {% extends "learning_logs/base.html" %}
 
 {% block page_header %}
-  <h3>{{ topic }}</h3>
+  <h1>{{ topic }}</h1>
 {% endblock page_header %}
 
 {% block content %}
   <p>
-    <a href="{% url 'learning_logs:new_entry' topic.id %}">Add new entry</a>
+    <a href="{% url 'learning_logs:new_entry' topic.id %}"><img src="https://cdn-icons-png.flaticon.com/512/54/54414.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"></a>
   </p>
 
   {% for entry in entries %}
     <div  class="card mb-3">
-        <h4 class="card-header">{{ entry.date_added|date:'M d, Y H:i' }}
-        <small><a href="{% url 'learning_logs:edit_entry' entry.id %}">
-            Edit entry</a></small>
+        <h4 class="card-body">{{ entry.text|linebreaks }}
         </h4>
-        <div class="card-body">
-            {{ entry.text|linebreaks }}
+        <div class="card-header ml-auto">
+        <a href="{% url 'learning_logs:edit_entry' entry.id %}">
+            <img src="https://cdn4.iconfinder.com/data/icons/software-menu-icons/256/SoftwareIcons-68-1024.png" alt="Logo" width="40" height="34" class="d-inline-block align-text-top"></a>
+            <small>{{ entry.date_added|date:'M d, Y H:i' }}</small>
         </div>
     </div>
     {% empty %}
